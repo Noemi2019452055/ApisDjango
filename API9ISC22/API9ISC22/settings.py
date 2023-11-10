@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'API9ISC22.wsgi.application'
+WSGI_APPLICATION = 'API9ISC22.wsgi.application' #nombre de la aplicacion
 
 
 # Database
@@ -78,13 +78,14 @@ WSGI_APPLICATION = 'API9ISC22.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Graficas',
-        'USER': 'postgres',
-        'PASSWORD': '12345',
-        'HOST': 'localhost',
+        'NAME': 'api9isc22_r0ld',
+        'USER': 'noemi',
+        'PASSWORD': 'E2KLuXlBm8TEsfIPJzPPWGLaRk4PJOPY',
+        'HOST': 'oregon-postgres.render.com',
         'PORT': '5432'
     }
 }
+
 
 
 # Password validation

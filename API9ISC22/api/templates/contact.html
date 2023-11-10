@@ -82,63 +82,84 @@
             </div>
         </section>
         <!--================End Home Banner Area =================-->
-        
-        <!--================Contact Area =================-->
-        <section class="contact_area p_120">
-            <div class="container">
-                <div id="mapBox" class="mapBox" 
-                    data-lat="40.701083" 
-                    data-lon="-74.1522848" 
-                    data-zoom="13" 
-                    data-info="PO Box CT16122 Collins Street West, Victoria 8007, Australia."
-                    data-mlat="40.701083"
-                    data-mlon="-74.1522848">
-                </div>
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="contact_info">
-                            <div class="info_item">
-                                <i class="lnr lnr-home"></i>
-                                <h6>California, United States</h6>
-                                <p>Santa monica bullevard</p>
-                            </div>
-                            <div class="info_item">
-                                <i class="lnr lnr-phone-handset"></i>
-                                <h6><a href="#">00 (440) 9865 562</a></h6>
-                                <p>Mon to Fri 9am to 6 pm</p>
-                            </div>
-                            <div class="info_item">
-                                <i class="lnr lnr-envelope"></i>
-                                <h6><a href="#">support@colorlib.com</a></h6>
-                                <p>Send us your query anytime!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email address">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter Subject">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <textarea class="form-control" name="message" id="message" rows="1" placeholder="Enter Message"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-12 text-right">
-                                <button type="submit" value="submit" class="btn submit_btn">Send Message</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+
+			  <!--================GRAFICAS =================-->
+
+			  
+
+			  <div>
+				<h4>
+					{% for registro in registros %}
+						<tr>
+						<td>{{ registro.id }}</td>
+						<td>{{ registro.pregunta1 }}</td>
+						<td>{{ registro.pregunta2 }}</td>
+						<td>{{ registro.pregunta3 }}</td>
+						<td>{{ registro.pregunta4 }}</td>
+						<td>{{ registro.pregunta5 }}</td>
+						<td>{{ registro.pregunta6 }}</td>
+						<td>{{ registro.pregunta7 }}</td>
+						<td>{{ registro.pregunta8 }}</td>
+						<td>{{ registro.pregunta9 }}</td>
+						<td>{{ registro.pregunta10 }}</td>
+						</tr>
+					{% endfor %}
+				</h4>
+			<h5>
+				{% for registro in registros %}
+					{% if registro.pregunta1 == "Raramente" %}
+						<tr>
+							<td>{{ registro.pregunta1 }}</td>
+						</tr>
+					{% endif %}
+				{% endfor %}
+				{{ count_Raramente }} filas en total.
+			</h5>
+		
+			<h6>
+				{% for registro in registros %}
+					{% if registro.pregunta1 == "Nunca" %}
+						<tr>
+							<td>{{ registro.pregunta1 }}</td>
+						</tr>
+					{% endif %}
+				{% endfor %}
+				{{ count_Nunca }} - filas en total.
+			
+			</div>
+
+			 
+
+			<div>
+				<canvas id="myChart"></canvas>
+			  </div>
+			  
+			  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+			  
+			  <script>
+				const ctx = document.getElementById('myChart');
+			  
+				new Chart(ctx, {
+				  type: 'bar',
+				  data: {
+					labels: ['Raramente', 'Nunca', 'Numero X',],
+					datasets: [{
+					  label: 'Encuesta de la pregunta 1',
+					  data: [{{count_Raramente}}, {{count_Nunca}}, 15],
+					  borderWidth: 1
+					}]
+				  },
+				  options: {
+					scales: {
+					  y: {
+						beginAtZero: true
+					  }
+					}
+				  }
+				});
+			  </script>
+
+
         </section>
         <!--================Contact Area =================-->
         

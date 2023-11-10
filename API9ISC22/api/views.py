@@ -7,6 +7,7 @@ from django.db import IntegrityError
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.http import HttpResponse
+from .models import Respuestaschatbot
 
 # Create your views here.
 class Home(APIView):
@@ -120,3 +121,39 @@ def enviar_correo(request, correo, usuario, contra):
     send_mail(subject, '', from_email, recipient_list, html_message=contenido_correo)
     
     return redirect('signin')
+
+
+#--------------------------------------GRAFICAS-----------------------------------------
+
+def grafica(request):
+    registros = Respuestaschatbot.objects.all()
+    return {'registros': registros}
+
+def consulta1(request):
+    # Realiza una consulta que cuente las filas con 'SI' en la columna pregunta1
+    count = Respuestaschatbot.objects.filter(pregunta1="Si").count()
+    return {'count_si': count}
+
+def consulta2(request):
+    # Realiza una consulta que cuente las filas con 'NO' en la columna pregunta1
+    count2 = Respuestaschatbot.objects.filter(pregunta1="No").count()
+    return {'count_no': count2}
+
+def HomePage(request):
+    grafica_data = grafica(request)
+    tuvista_data = consulta1(request)
+    tuvista_data2 = consulta2(request)
+    
+    # Combina los contextos de ambas vistas en un solo diccionario
+    context = {**grafica_data, **tuvista_data, **tuvista_data2}
+    return render(request, 'graficas.html', context)
+
+def Enc(request):
+    
+    grafica_data = grafica(request)
+    tuvista_data = consulta1(request)
+    tuvista_data2 = consulta2(request)
+    
+    # Combina los contextos de ambas vistas en un solo diccionario
+    context = {**grafica_data, **tuvista_data, **tuvista_data2}
+    return render (request, 'graficas.html',context)
