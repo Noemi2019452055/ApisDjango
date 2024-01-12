@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="{% static 'img/favicon.png'%}" type="image/png">
-        <title>MeetMe Personal</title>
+        <title>Contacto</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
         <link rel="stylesheet" href="{% static 'css/style2.css'%}">
@@ -81,87 +81,7 @@
 				</div>
             </div>
         </section>
-        <!--================End Home Banner Area =================-->
 
-			  <!--================GRAFICAS =================-->
-
-			  
-
-			  <div>
-				<h4>
-					{% for registro in registros %}
-						<tr>
-						<td>{{ registro.id }}</td>
-						<td>{{ registro.pregunta1 }}</td>
-						<td>{{ registro.pregunta2 }}</td>
-						<td>{{ registro.pregunta3 }}</td>
-						<td>{{ registro.pregunta4 }}</td>
-						<td>{{ registro.pregunta5 }}</td>
-						<td>{{ registro.pregunta6 }}</td>
-						<td>{{ registro.pregunta7 }}</td>
-						<td>{{ registro.pregunta8 }}</td>
-						<td>{{ registro.pregunta9 }}</td>
-						<td>{{ registro.pregunta10 }}</td>
-						</tr>
-					{% endfor %}
-				</h4>
-			<h5>
-				{% for registro in registros %}
-					{% if registro.pregunta1 == "Raramente" %}
-						<tr>
-							<td>{{ registro.pregunta1 }}</td>
-						</tr>
-					{% endif %}
-				{% endfor %}
-				{{ count_Raramente }} filas en total.
-			</h5>
-		
-			<h6>
-				{% for registro in registros %}
-					{% if registro.pregunta1 == "Nunca" %}
-						<tr>
-							<td>{{ registro.pregunta1 }}</td>
-						</tr>
-					{% endif %}
-				{% endfor %}
-				{{ count_Nunca }} - filas en total.
-			
-			</div>
-
-			 
-
-			<div>
-				<canvas id="myChart"></canvas>
-			  </div>
-			  
-			  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-			  
-			  <script>
-				const ctx = document.getElementById('myChart');
-			  
-				new Chart(ctx, {
-				  type: 'bar',
-				  data: {
-					labels: ['Raramente', 'Nunca', 'Numero X',],
-					datasets: [{
-					  label: 'Encuesta de la pregunta 1',
-					  data: [{{count_Raramente}}, {{count_Nunca}}, 15],
-					  borderWidth: 1
-					}]
-				  },
-				  options: {
-					scales: {
-					  y: {
-						beginAtZero: true
-					  }
-					}
-				  }
-				});
-			  </script>
-
-
-        </section>
-        <!--================Contact Area =================-->
         
         <!--================Footer Area =================-->
         <footer class="footer_area p_120">
